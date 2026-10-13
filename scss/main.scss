@@ -1,0 +1,35 @@
+// ============================================================
+// MAIN.SCSS
+// Titik masuk kompilasi. REQUIREMENT: wajib pakai @use, bukan @import.
+// Urutan @use di bawah = urutan cascade CSS yang dihasilkan.
+// ============================================================
+
+// 1. Abstracts (tidak menghasilkan CSS sendiri — variabel, mixin, map)
+@use "abstracts/variables";
+@use "abstracts/mixins";
+
+// 2. Vendors (reset/override library pihak ketiga, saat ini kosong)
+@use "vendors/placeholder";
+
+// 3. Themes (custom properties warna HARUS di atas supaya var(--...)
+//    sudah tersedia untuk semua partial di bawahnya)
+@use "themes/dark";
+
+// 4. Base (reset & tipografi dasar)
+@use "base/reset";
+@use "base/typography";
+
+// 5. Layout (struktur besar halaman)
+@use "layout/header";
+@use "layout/grid";
+@use "layout/footer";
+
+// 6. Components (potongan UI yang bisa dipakai ulang)
+@use "components/buttons";
+@use "components/terminal";
+@use "components/profile-panel";
+@use "components/stat-contact";
+@use "components/content-blocks";
+
+// 7. Pages (gaya spesifik satu halaman)
+@use "pages/home";

@@ -1,0 +1,58 @@
+// ============================================================
+// THEMES / DARK
+// REQUIREMENT: variables untuk colors (custom properties di :root)
+// REQUIREMENT: @each loop — dipakai di sini untuk membangkitkan semua
+// custom property warna dari $theme-dark / $theme-light tanpa menulis
+// manual satu-satu.
+// ============================================================
+
+@use "sass:map";
+@use "../abstracts/variables" as vars;
+
+// ---------- Base custom properties (warna default = tema dark) ----------
+:root {
+  @each $name, $value in vars.$theme-dark {
+    --color-#{$name}: #{$value};
+  }
+
+  // tipografi
+  --font-mono: #{vars.$font-mono};
+  --font-body: #{vars.$font-body};
+
+  // ukuran & jarak
+  --radius-sm: #{vars.$radius-sm};
+  --radius-md: #{vars.$radius-md};
+  --radius-lg: #{vars.$radius-lg};
+  --space-sm: #{vars.$space-sm};
+  --space-md: #{vars.$space-md};
+  --space-lg: #{vars.$space-lg};
+
+  // layout
+  --sidebar-width: #{vars.$sidebar-width};
+}
+
+// ---------- Bonus: mengikuti preferensi sistem ----------
+// Situs ini memang bertema dark/tech secara default, blok ini
+// menegaskan palet dark tetap dipakai saat sistem juga dark.
+@media (prefers-color-scheme: dark) {
+  :root {
+    @each $name, $value in vars.$theme-dark {
+      --color-#{$name}: #{$value};
+    }
+  }
+}
+
+// ---------- Toggle manual lewat [data-theme] ----------
+// Selector atribut ini selalu menang atas preferensi sistem karena
+// spesifisitasnya lebih tinggi daripada :root polos.
+:root[data-theme="light"] {
+  @each $name, $value in vars.$theme-light {
+    --color-#{$name}: #{$value};
+  }
+}
+
+:root[data-theme="dark"] {
+  @each $name, $value in vars.$theme-dark {
+    --color-#{$name}: #{$value};
+  }
+}

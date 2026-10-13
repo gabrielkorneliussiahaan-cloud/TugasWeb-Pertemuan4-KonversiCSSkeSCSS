@@ -1,0 +1,97 @@
+// ============================================================
+// PAGES / HOME
+// Bagian yang spesifik untuk halaman ini: section wrapper, animasi
+// reveal saat scroll, dan gaya khusus untuk mode print.
+// ============================================================
+
+@use "../abstracts/variables" as vars;
+
+.section {
+  padding: vars.$space-lg 0;
+  border-bottom: 1px solid var(--color-line);
+
+  // level 2
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  // level 2
+  &__label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: vars.$space-md;
+
+    // level 3
+    span {
+      font-size: 12px;
+      color: var(--color-primary);
+    }
+  }
+
+  // level 2
+  &__title {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    margin: 0;
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+
+  // level 2
+  &__intro {
+    font-size: 16px;
+    max-width: 620px;
+    margin: 0 0 vars.$space-md;
+    color: var(--color-ink);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  // level 2
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal__cursor {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media print {
+  .site-header,
+  body {
+    background-image: none;
+  }
+  .site-header {
+    display: none;
+  }
+  .layout {
+    display: block;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .terminal,
+  .profile-panel,
+  .stat-row__item,
+  .contact-line,
+  .log-list__item,
+  .json-block,
+  .comment-block {
+    border: 1px solid #ccc;
+  }
+}

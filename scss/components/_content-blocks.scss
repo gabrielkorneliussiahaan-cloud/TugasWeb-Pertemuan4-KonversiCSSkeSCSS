@@ -1,0 +1,171 @@
+// ============================================================
+// COMPONENTS / CONTENT BLOCKS
+// (json-block, log-list, achievement-list, comment-block)
+// REQUIREMENT: minimal 1 @each / @for loop -> lihat @each di bawah
+// ============================================================
+
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+
+// ---- tentang.json ----
+.json-block {
+  @include mix.card-surface($radius: vars.$radius-md, $padding: 20px 22px);
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-x: auto;
+}
+.json-key {
+  color: var(--color-accent);
+}
+.json-string {
+  color: var(--color-primary);
+}
+.json-punct {
+  color: var(--color-muted);
+}
+
+// ---- riwayat pendidikan (log list) ----
+// Map jenjang -> nama variabel warna, dipakai oleh @each di bawah
+// supaya tiap level (SD/SMP/SMA/Kuliah) tidak perlu ditulis manual.
+$log-levels: (
+  "sd": "accent",
+  "smp": "accent",
+  "sma": "warn",
+  "kuliah": "primary",
+);
+
+.log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  // level 2
+  &__item {
+    @include mix.card-surface($radius: vars.$radius-sm, $padding: 12px 16px);
+    border-left: 3px solid var(--color-accent);
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    @include mix.hover-lift(4px);
+
+    // level 3 — hasil dari @each (REQUIREMENT: @each loop)
+    @each $level, $color-name in $log-levels {
+      &--#{$level} {
+        border-left-color: var(--color-#{$color-name});
+      }
+    }
+  }
+
+  // level 2
+  &__tag {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  // level 2
+  &__school {
+    color: var(--color-ink);
+  }
+
+  // level 2
+  &__year {
+    color: var(--color-muted);
+    margin-left: auto;
+  }
+
+  // level 2
+  &__note {
+    flex-basis: 100%;
+    margin: 4px 0 0;
+    color: var(--color-muted);
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+}
+
+// ---- prestasi ----
+.achievement-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // level 2
+  &__item {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-line);
+    transition: transform 0.2s ease;
+
+    // level 3
+    &:hover {
+      transform: translateX(4px);
+    }
+    // level 3
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  // level 2
+  &__icon {
+    font-size: 22px;
+    color: var(--color-warn);
+    border: 1px solid var(--color-line);
+    border-radius: vars.$radius-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+  }
+
+  // level 2
+  &__title {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--color-ink);
+  }
+
+  // level 2
+  &__note {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 14px;
+  }
+
+  // level 2
+  &__tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: vars.$radius-sm;
+    padding: 3px 8px;
+  }
+}
+
+// ---- cita-cita (comment block) ----
+.comment-block {
+  @include mix.card-surface($radius: vars.$radius-md, $padding: 22px 24px);
+  font-size: 14px;
+  line-height: 2;
+
+  // level 2
+  &__slashes {
+    color: var(--color-muted);
+    margin-right: 6px;
+  }
+
+  // level 2
+  &__text {
+    color: var(--color-primary);
+  }
+}

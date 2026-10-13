@@ -1,0 +1,66 @@
+// ============================================================
+// LAYOUT / HEADER
+// Nesting maksimal 3 level dijaga di seluruh file ini.
+// ============================================================
+
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-line);
+
+  // level 2
+  &__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    @include mix.flex-row($gap: vars.$space-sm, $wrap: wrap);
+    justify-content: space-between;
+    padding: 14px 24px;
+  }
+
+  // level 2
+  &__brand {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-primary);
+    text-decoration: none;
+    border: 1px solid var(--color-line);
+    border-radius: vars.$radius-sm;
+    padding: 6px 12px;
+  }
+
+  // level 2
+  &__actions {
+    @include mix.flex-row($gap: 10px);
+  }
+}
+
+// REQUIREMENT: Flexbox component — daftar link navigasi
+.site-nav {
+  &__list {
+    @include mix.flex-row($gap: 20px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // level 2
+  &__link {
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--color-ink);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, color 0.2s ease;
+
+    // level 3
+    &:hover {
+      opacity: 1;
+      color: var(--color-primary);
+    }
+  }
+}

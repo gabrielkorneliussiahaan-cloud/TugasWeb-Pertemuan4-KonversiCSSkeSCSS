@@ -1,0 +1,78 @@
+// ============================================================
+// COMPONENTS / STAT ROW & CONTACT LINE
+// REQUIREMENT: Flexbox component #3 (.stat-row) dan #4 (.contact-line)
+// ============================================================
+
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+
+.stat-row {
+  @include mix.flex-row($gap: 10px);
+
+  // level 2
+  &__item {
+    flex: 1 1 calc(50% - 10px);
+    @include mix.card-surface($radius: vars.$radius-md, $padding: 12px 10px);
+    text-align: center;
+  }
+
+  // level 2
+  &__value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0 0 4px;
+  }
+
+  // level 2
+  &__label {
+    font-size: 10px;
+    color: var(--color-muted);
+    margin: 0;
+  }
+}
+
+.contact-line {
+  @include mix.flex-row($gap: 12px);
+  @include mix.card-surface($radius: vars.$radius-md, $padding: 14px 16px);
+
+  // level 2
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: vars.$radius-sm;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  // level 2
+  &__label {
+    font-size: 10px;
+    color: var(--color-muted);
+    margin: 0 0 2px;
+  }
+
+  // level 2
+  &__value {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  // level 2
+  a {
+    text-decoration: none;
+
+    // level 3
+    &:hover {
+      text-decoration: underline;
+      color: var(--color-primary);
+    }
+  }
+}

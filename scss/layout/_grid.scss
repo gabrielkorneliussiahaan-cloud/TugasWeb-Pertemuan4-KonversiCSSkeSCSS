@@ -1,0 +1,50 @@
+// ============================================================
+// LAYOUT / GRID
+// Struktur utama halaman (sidebar + main). Ditulis mobile-first:
+// default 1 kolom (stack), lalu berubah jadi 2 kolom mulai breakpoint
+// "md" — perilaku akhirnya sama persis dengan CSS asli, hanya arah
+// penulisan medianya dibalik ke pendekatan mobile-first.
+// ============================================================
+
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  gap: vars.$space-lg;
+  align-items: start;
+
+  // default (mobile): 1 kolom, sidebar di atas main
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "sidebar"
+    "main";
+
+  @include mix.respond-to("md") {
+    grid-template-columns: vars.$sidebar-width 1fr;
+    grid-template-areas: "sidebar main";
+  }
+
+  &__sidebar {
+    grid-area: sidebar;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$space-md;
+    padding: vars.$space-lg 0;
+
+    @include mix.respond-to("md") {
+      position: sticky;
+      top: 92px;
+    }
+  }
+
+  &__main {
+    grid-area: main;
+    padding: vars.$space-lg 0;
+    min-width: 0;
+  }
+}

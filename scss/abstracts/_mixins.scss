@@ -1,0 +1,47 @@
+// ============================================================
+// ABSTRACTS / MIXINS
+// REQUIREMENT: minimal 3 mixins reusable (di sini ada 4)
+// ============================================================
+
+@use "sass:map";
+@use "variables" as vars;
+
+// 1) Mixin breakpoint mobile-first. Dipakai lewat map $breakpoints
+//    supaya semua komponen konsisten memakai titik lebar yang sama.
+@mixin respond-to($breakpoint) {
+  @if map.has-key(vars.$breakpoints, $breakpoint) {
+    @media (min-width: map.get(vars.$breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` tidak ditemukan di $breakpoints.";
+  }
+}
+
+// 2) Mixin flex-center: dipakai berulang untuk komponen yang berbaris
+//    horizontal dengan jarak antar-item (nav, tag list, stat row, dst).
+@mixin flex-row($gap: vars.$space-sm, $align: center, $wrap: wrap) {
+  display: flex;
+  align-items: $align;
+  flex-wrap: $wrap;
+  gap: $gap;
+}
+
+// 3) Mixin card-surface: gaya dasar "kartu" (permukaan gelap, border
+//    tipis, radius) yang dipakai berulang di banyak komponen.
+@mixin card-surface($radius: vars.$radius-md, $padding: vars.$space-md) {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: $radius;
+  padding: $padding;
+}
+
+// 4) Mixin hover-lift: efek hover (geser + ganti warna border) yang
+//    dipakai di beberapa daftar (log-list, achievement-list, dll).
+@mixin hover-lift($distance: 4px) {
+  transition: transform 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: translateX($distance);
+  }
+}

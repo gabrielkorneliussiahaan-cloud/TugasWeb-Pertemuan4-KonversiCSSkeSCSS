@@ -1,0 +1,86 @@
+// ============================================================
+// ABSTRACTS / VARIABLES
+// REQUIREMENT: variables untuk colors & spacing
+// Nilai di sini jadi "sumber tunggal" (single source of truth).
+// Tema gelap/terang tetap dinamis lewat CSS custom properties
+// (lihat themes/_dark.scss) — nilainya diambil dari variabel di sini.
+// ============================================================
+
+// ---------- Colors (tema dark/tech, default) ----------
+$color-bg: #0a0e13;
+$color-surface: #10161d;
+$color-surface-alt: #161d26;
+$color-ink: #dce6ee;
+$color-muted: #6b7f8f;
+$color-primary: #39ff88;
+$color-accent: #4da8ff;
+$color-warn: #ffb84d;
+$color-line: rgba(220, 230, 238, 0.12);
+$color-glow: rgba(57, 255, 136, 0.25);
+
+// ---------- Colors (tema terang, dipakai saat [data-theme="light"]) ----------
+$color-bg-light: #f4f6f5;
+$color-surface-light: #ffffff;
+$color-surface-alt-light: #eef1f0;
+$color-ink-light: #10161d;
+$color-muted-light: #5c6b66;
+$color-primary-light: #0a8f4c;
+$color-accent-light: #1668c2;
+$color-warn-light: #b5720a;
+$color-line-light: rgba(16, 22, 29, 0.12);
+$color-glow-light: rgba(10, 143, 76, 0.18);
+
+// Map warna dark — dipakai oleh @each di themes/_dark.scss untuk
+// menghasilkan custom property --color-* secara otomatis.
+$theme-dark: (
+  "bg": $color-bg,
+  "surface": $color-surface,
+  "surface-alt": $color-surface-alt,
+  "ink": $color-ink,
+  "muted": $color-muted,
+  "primary": $color-primary,
+  "accent": $color-accent,
+  "warn": $color-warn,
+  "line": $color-line,
+  "glow": $color-glow,
+);
+
+// Map warna light — struktur key harus sama dengan $theme-dark supaya
+// bisa dipakai ulang oleh mixin/loop yang sama.
+$theme-light: (
+  "bg": $color-bg-light,
+  "surface": $color-surface-light,
+  "surface-alt": $color-surface-alt-light,
+  "ink": $color-ink-light,
+  "muted": $color-muted-light,
+  "primary": $color-primary-light,
+  "accent": $color-accent-light,
+  "warn": $color-warn-light,
+  "line": $color-line-light,
+  "glow": $color-glow-light,
+);
+
+// ---------- Typography ----------
+$font-mono: "Space Mono", monospace;
+$font-body: "Inter", sans-serif;
+
+// ---------- Spacing ----------
+$space-sm: 12px;
+$space-md: 20px;
+$space-lg: 36px;
+
+// ---------- Radius ----------
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+
+// ---------- Layout ----------
+$sidebar-width: 280px;
+
+// ---------- Breakpoints (mobile-first, dipakai oleh mixin respond-to) ----------
+$breakpoints: (
+  "sm": 576px,
+  "md": 860px,
+  "lg": 992px,
+  "xl": 1200px,
+);

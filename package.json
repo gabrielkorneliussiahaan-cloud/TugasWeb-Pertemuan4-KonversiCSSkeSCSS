@@ -1,0 +1,12 @@
+{
+  "name": "tugas-rutin-4-scss",
+  "version": "1.0.0",
+  "description": "Konversi CSS ke SCSS dengan struktur 7-1 pattern — Tugas Rutin 4 Pemrograman Web",
+  "scripts": {
+    "build": "sass scss/main.scss dist/styles.css --style=expanded --no-source-map",
+    "watch": "sass --watch scss/main.scss:dist/styles.css --style=expanded --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

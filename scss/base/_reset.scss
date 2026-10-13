@@ -1,0 +1,26 @@
+// ============================================================
+// BASE / RESET
+// REQUIREMENT: box-sizing: border-box secara global (tetap dari CSS asli)
+// ============================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  background-image: linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 42px 42px;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}

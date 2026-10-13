@@ -1,0 +1,89 @@
+// ============================================================
+// COMPONENTS / TERMINAL
+// Nesting maksimal 3 level: .terminal > &__dot > &--red/yellow/green
+// ============================================================
+
+@use "../abstracts/variables" as vars;
+
+.terminal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: vars.$radius-md;
+  overflow: hidden;
+  margin-bottom: vars.$space-lg;
+  box-shadow: 0 0 0 1px transparent, 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+
+  // level 2
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--color-surface-alt);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  // level 2
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+
+    // level 3 (modifiers)
+    &--red {
+      background: #ff5f57;
+    }
+    &--yellow {
+      background: #febc2e;
+    }
+    &--green {
+      background: #28c840;
+    }
+  }
+
+  // level 2
+  &__title {
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  // level 2
+  &__body {
+    padding: 20px 22px 26px;
+    font-size: 14px;
+  }
+
+  // level 2
+  &__line {
+    margin: 0 0 10px;
+    color: var(--color-ink);
+  }
+
+  // level 2
+  &__prompt {
+    color: var(--color-primary);
+    margin-right: 8px;
+  }
+
+  // level 2
+  &__output {
+    margin: 0 0 10px;
+    color: var(--color-muted);
+    min-height: 1.6em;
+    white-space: pre-wrap;
+  }
+
+  // level 2
+  &__cursor {
+    color: var(--color-primary);
+    animation: blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
